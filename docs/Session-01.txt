@@ -1,0 +1,278 @@
+
+File: Session.txt
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github-mit$ cd pthread-barrier-dynamic-queues/
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github-mit/pthread-barrier-dynamic-queues$ date
+Tue 02 Mar 2021 03:13:58 PM +08
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github-mit/pthread-barrier-dynamic-queues$ uname -a
+Linux HPEliteBook8470p-Ub2004-rt38 5.4.66-rt38 #1 SMP PREEMPT_RT Sat Sep 26 16:51:59 +08 2020 x86_64 x86_64 x86_64 GNU/Linux
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github-mit/pthread-barrier-dynamic-queues$ lsb_release -a
+LSB Version:	core-11.1.0ubuntu2-noarch:security-11.1.0ubuntu2-noarch
+Distributor ID:	Ubuntu
+Description:	Ubuntu 20.04.2 LTS
+Release:	20.04
+Codename:	focal
+===========================================================
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github-mit/pthread-barrier-dynamic-queues$ gcc --version
+gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0
+Copyright (C) 2019 Free Software Foundation, Inc.
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github-mit/pthread-barrier-dynamic-queues$ g++ --version
+g++ (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github-mit/pthread-barrier-dynamic-queues$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github-mit/pthread-barrier-dynamic-queues$ tree ./
+./
+├── Debug
+│   ├── makefile
+│   ├── objects.mk
+│   ├── pthread-rt-barrier-dyn-queue
+│   ├── sources.mk
+│   └── src
+│       ├── dtstamp
+│       │   ├── dtstamp.d
+│       │   ├── dtstamp.o
+│       │   └── subdir.mk
+│       ├── pthread-rt-barrier
+│       │   ├── pthread_rt_barrier.d
+│       │   ├── pthread_rt_barrier.o
+│       │   └── subdir.mk
+│       ├── pthread-rt-barrier-dyn-queue.d
+│       ├── pthread-rt-barrier-dyn-queue.o
+│       ├── random-dbl-pthread-rt-dyn-queue
+│       │   ├── random_dbl_pthread_rt_dyn_queue.d
+│       │   ├── random_dbl_pthread_rt_dyn_queue.o
+│       │   └── subdir.mk
+│       ├── random-int-dbl
+│       │   ├── random_int_dbl.d
+│       │   ├── random_int_dbl.o
+│       │   └── subdir.mk
+│       └── subdir.mk
+├── docs
+├── figures
+├── files
+├── README.md
+└── src
+    ├── dtstamp
+    │   ├── dtstamp.cpp
+    │   └── dtstamp.hpp
+    ├── pthread-rt-barrier
+    │   ├── pthread_rt_barrier.cpp
+    │   └── pthread_rt_barrier.hpp
+    ├── pthread-rt-barrier-dyn-queue.cpp
+    ├── random-dbl-pthread-rt-dyn-queue
+    │   ├── random_dbl_pthread_rt_dyn_queue.cpp
+    │   └── random_dbl_pthread_rt_dyn_queue.hpp
+    └── random-int-dbl
+        ├── random_int_dbl.cpp
+        └── random_int_dbl.hpp
+
+14 directories, 29 files
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github-mit/pthread-barrier-dynamic-queues$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github-mit/pthread-barrier-dynamic-queues$ ls -al
+total 36
+drwxrwxr-x 8 wruslan wruslan 4096 Mar  2 15:10 .
+drwxrwxr-x 5 wruslan wruslan 4096 Mar  2 14:50 ..
+drwxrwxr-x 3 wruslan wruslan 4096 Oct 12 18:55 Debug
+drwxrwxr-x 2 wruslan wruslan 4096 Mar  2 15:16 docs
+drwxrwxr-x 2 wruslan wruslan 4096 Mar  2 15:10 figures
+drwxrwxr-x 2 wruslan wruslan 4096 Mar  2 15:10 files
+drwxrwxr-x 8 wruslan wruslan 4096 Mar  2 14:50 .git
+-rw-rw-r-- 1 wruslan wruslan  166 Mar  2 15:09 README.md
+drwxrwxr-x 6 wruslan wruslan 4096 Nov 21 18:27 src
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github-mit/pthread-barrier-dynamic-queues$ cd Debug/
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github-mit/pthread-barrier-dynamic-queues/Debug$ ls -al
+total 756
+drwxrwxr-x 3 wruslan wruslan   4096 Oct 12 18:55 .
+drwxrwxr-x 8 wruslan wruslan   4096 Mar  2 15:10 ..
+-rw-rw-r-- 1 wruslan wruslan   1570 Oct 12 18:59 makefile
+-rw-rw-r-- 1 wruslan wruslan    258 Oct 12 18:55 objects.mk
+-rwxrwxr-x 1 wruslan wruslan 749320 Oct 12 18:55 pthread-rt-barrier-dyn-queue
+-rw-rw-r-- 1 wruslan wruslan    626 Oct 12 18:59 sources.mk
+drwxrwxr-x 6 wruslan wruslan   4096 Oct 12 18:55 src
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github-mit/pthread-barrier-dynamic-queues/Debug$ 
+
+EXECUTION 
+=============================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github-mit/pthread-barrier-dynamic-queues/Debug$ sudo ./pthread-rt-barrier-dyn-queue 
+[sudo] password for wruslan: 
+2021-03-02 15:17:13.188549067 	Starting in main(), Bismillah 3 times WRY. 
+2021-03-02 15:17:13.188585521 	Program started. 
+
+=============================================================
+2021-03-02 15:17:13.188607682 	Timer 1 start. 
+2021-03-02 15:17:13.188649018 	CHECK 1: Check environment, date, time and clock.
+2021-03-02 15:17:13.188692478 	Current date and time: Tue Mar 02, 2021 15:17:13 
+2021-03-02 15:17:13.188732232 	Current directory: /home/wruslan/github-mit/pthread-barrier-dynamic-queues/Debug
+2021-03-02 15:17:13.188747415 	Current runfile  : ./pthread-rt-barrier-dyn-queue 
+2021-03-02 15:17:13.188758735 	Clock time resolution 	= 1 nanoseconds
+2021-03-02 15:17:13.188770121 	Timer 1 stop. Duration (timer start-to-stop) = 0.000164553 seconds. 
+
+=============================================================
+2021-03-02 15:17:13.188788002 	Timer 2 start. 
+2021-03-02 15:17:13.188797920 	CHECK 2.1: Display generation of uniform random integers.
+j = 0 Uniform random_integer between (-1001, 2001) = 1799 
+j = 1 Uniform random_integer between (-1001, 2001) = 1060 
+j = 2 Uniform random_integer between (-1001, 2001) = -280 
+j = 3 Uniform random_integer between (-1001, 2001) = 631 
+j = 4 Uniform random_integer between (-1001, 2001) = 1546 
+j = 5 Uniform random_integer between (-1001, 2001) = -546 
+j = 6 Uniform random_integer between (-1001, 2001) = 268 
+j = 7 Uniform random_integer between (-1001, 2001) = -435 
+j = 8 Uniform random_integer between (-1001, 2001) = 1600 
+j = 9 Uniform random_integer between (-1001, 2001) = -565 
+
+SUCCESS: Above are the 10 generated uniform random integers between (-1001, 2001). 
+
+2021-03-02 15:17:13.188977566 	CHECK 2.2: Check randomness of generated of uniform random integers.
+Random integers in range[-15011, -12909) = 	bin_count[0] = 4894 	cumulative check_bin_count = 4894 
+Random integers in range[-12909, -10807) = 	bin_count[1] = 4969 	cumulative check_bin_count = 9863 
+Random integers in range[-10807, -8705) = 	bin_count[2] = 4961 	cumulative check_bin_count = 14824 
+Random integers in range[-8705, -6603) = 	bin_count[3] = 4969 	cumulative check_bin_count = 19793 
+Random integers in range[-6603, -4501) = 	bin_count[4] = 4924 	cumulative check_bin_count = 24717 
+Random integers in range[-4501, -2399) = 	bin_count[5] = 4948 	cumulative check_bin_count = 29665 
+Random integers in range[-2399, -297) = 	bin_count[6] = 5058 	cumulative check_bin_count = 34723 
+Random integers in range[-297, 1805) = 	bin_count[7] = 5041 	cumulative check_bin_count = 39764 
+Random integers in range[1805, 3907) = 	bin_count[8] = 4977 	cumulative check_bin_count = 44741 
+Random integers in range[3907, 6009) = 	bin_count[9] = 5039 	cumulative check_bin_count = 49780 
+Random integers in range[6009, 8111) = 	bin_count[10] = 4922 	cumulative check_bin_count = 54702 
+Random integers in range[8111, 10213) = 	bin_count[11] = 5014 	cumulative check_bin_count = 59716 
+Random integers in range[10213, 12315) = 	bin_count[12] = 5120 	cumulative check_bin_count = 64836 
+Random integers in range[12315, 14417) = 	bin_count[13] = 5020 	cumulative check_bin_count = 69856 
+Random integers in range[14417, 16519) = 	bin_count[14] = 5114 	cumulative check_bin_count = 74970 
+Random integers in range[16519, 18621) = 	bin_count[15] = 4982 	cumulative check_bin_count = 79952 
+Random integers in range[18621, 20723) = 	bin_count[16] = 5028 	cumulative check_bin_count = 84980 
+Random integers in range[20723, 22825) = 	bin_count[17] = 5056 	cumulative check_bin_count = 90036 
+Random integers in range[22825, 24927) = 	bin_count[18] = 5043 	cumulative check_bin_count = 95079 
+Random integers in range[24927, 27029) = 	bin_count[19] = 4921 	cumulative check_bin_count = 100000 
+
+SUCCESS: Above are the 100000 uniform random integers in the range(-15011, 27013) accounted for in the 20 bins. 
+
+2021-03-02 15:17:13.199988395 	Timer 2 stop. Duration (timer start-to-stop) = 0.011186168 seconds. 
+
+=============================================================
+2021-03-02 15:17:13.200012547 	Timer 3 start. 
+2021-03-02 15:17:13.200024047 	CHECK 3.1: Display generation of uniform random doubles.
+j = 0 Uniform random_doubles between (-1001.444450, 2001.666650) = 938.629126 
+j = 1 Uniform random_doubles between (-1001.444450, 2001.666650) = -390.249370 
+j = 2 Uniform random_doubles between (-1001.444450, 2001.666650) = 1300.648907 
+j = 3 Uniform random_doubles between (-1001.444450, 2001.666650) = 736.762113 
+j = 4 Uniform random_doubles between (-1001.444450, 2001.666650) = -642.407243 
+j = 5 Uniform random_doubles between (-1001.444450, 2001.666650) = 122.062860 
+j = 6 Uniform random_doubles between (-1001.444450, 2001.666650) = -915.679801 
+j = 7 Uniform random_doubles between (-1001.444450, 2001.666650) = 314.121645 
+j = 8 Uniform random_doubles between (-1001.444450, 2001.666650) = 1357.300625 
+j = 9 Uniform random_doubles between (-1001.444450, 2001.666650) = -505.472547 
+
+SUCCESS: Above are the 10 generated uniform random doubles between (-1001.444450, 2001.666650). 
+
+2021-03-02 15:17:13.200147591 	CHECK 3.2: Check randomness of generated of uniform random doubles.
+Random doubles in range[-15011.784240, -11809.252502) = 	bin_count[0] = 20201 	cumulative check_bin_count = 20201 
+Random doubles in range[-11809.252502, -8606.720764) = 	bin_count[1] = 19960 	cumulative check_bin_count = 40161 
+Random doubles in range[-8606.720764, -5404.189026) = 	bin_count[2] = 20160 	cumulative check_bin_count = 60321 
+Random doubles in range[-5404.189026, -2201.657288) = 	bin_count[3] = 19891 	cumulative check_bin_count = 80212 
+Random doubles in range[-2201.657288, 1000.874450) = 	bin_count[4] = 19951 	cumulative check_bin_count = 100163 
+Random doubles in range[1000.874450, 4203.406188) = 	bin_count[5] = 20024 	cumulative check_bin_count = 120187 
+Random doubles in range[4203.406188, 7405.937926) = 	bin_count[6] = 19838 	cumulative check_bin_count = 140025 
+Random doubles in range[7405.937926, 10608.469664) = 	bin_count[7] = 20096 	cumulative check_bin_count = 160121 
+Random doubles in range[10608.469664, 13811.001402) = 	bin_count[8] = 19882 	cumulative check_bin_count = 180003 
+Random doubles in range[13811.001402, 17013.533140) = 	bin_count[9] = 19997 	cumulative check_bin_count = 200000 
+
+SUCCESS: Above are the 200000 uniform random doubles in the range(-15011.784240, 17013.533140) accounted for in the 10 bins. 
+
+2021-03-02 15:17:13.214210278 	Timer 3 stop. Duration (timer start-to-stop) = 0.014186727 seconds. 
+
+=============================================================
+2021-03-02 15:17:13.214229434 	Timer 4 start. 
+2021-03-02 15:17:13.214239073 	QUEUE: Pass and sum random integers using dynamic queue implementation MPMC mode.
+2021-03-02 15:17:13.886612119 	(1) Success: mlockall memory current/future success. ret_lock 	= 0 
+2021-03-02 15:17:13.886674870 	(2) Success: pthread init attributes success. ret_pth_init 	= 0 
+2021-03-02 15:17:13.886700452 	(3) Success: pthread setstacksize success. ret_stacksize 	= 0 
+2021-03-02 15:17:13.886750293 	(4) Success: pthread setschedpolicy success. ret_schedpolicy 	= 0 
+2021-03-02 15:17:13.886818257 	(5) Success: pthread setschedparam priority success. ret_param_sched_priority 	= 0 
+2021-03-02 15:17:13.886873564 	(6) Success: pthread setsinheritsched success. ret_inheritsched = 0 
+2021-03-02 15:17:13.887147628 	(7) Success: pthread create pthread_producer_01 success. pthread_create_check 	= 0 
+2021-03-02 15:17:13.887750580 	(7) Success: pthread create pthread_producer_02 success. pthread_create_check 	= 0 
+2021-03-02 15:17:13.889059404 	(7) Success: pthread create pthread_consumer_01 success. pthread_create_check 	= 0 
+2021-03-02 15:17:13.890237347 	(7) Success: pthread create pthread_consumer_02 success. pthread_create_check 	= 0 
+2021-03-02 15:17:15.415975413 	(8) Success: pthread join   pthread_producer_01 success. pthread_join_check 	= 0 
+2021-03-02 15:17:15.416026885 	(8) Success: pthread join   pthread_producer_02 success. pthread_join_check 	= 0 
+2021-03-02 15:17:15.416070950 	(8) Success: pthread join   pthread_consumer_01 success. pthread_join_check 	= 0 
+2021-03-02 15:17:15.416092787 	(8) Success: pthread join   pthread_consumer_02 success. pthread_join_check 	= 0 
+2021-03-02 15:17:15.958273256 	RESULT. Initial queue size defined for dynamically adjustable queue    = 1000
+2021-03-02 15:17:15.958350988 	RESULT. Actual queue entries processed(summed) in the_recorded_queue   = 7000 
+2021-03-02 15:17:15.958369904 	RESULT. The simple sequential queue sum_check: the_recorded_queue_sum  = -302.038
+2021-03-02 15:17:15.958422145 	RESULT. The MultiProducer-MultiConsumer MPMC thread sum: the_queue_sum = -302.038
+
+2021-03-02 15:17:15.958461121 	SUCCESS. Parallel MPMC threaded_sum is equal to sequential sum_check. 
+
+2021-03-02 15:17:15.958499533 	Timer 4 stop. Duration (timer start-to-stop) = 2.744262850 seconds. 
+
+=============================================================
+2021-03-02 15:17:15.958549304 	Timer 5 start. 
+2021-03-02 15:17:15.958574018 	PTHREAD_BARRIER: Test barrier_init, barrier_wait and barrier_destroy for POSIX threads.
+2021-03-02 15:17:15.958606506 	INITIALIZE: pthread_barrier_init 	PID:17978 Barrier for 9 threads initialized in main(). 
+2021-03-02 15:17:15.966513984 	CREATE: pthread_create thread:0 	PID:17978 in main().
+2021-03-02 15:17:15.966578419 	Started run thread:0 in threadFn()	TID:17983 Run is to wait for 11 seconds.
+2021-03-02 15:17:15.972930489 	CREATE: pthread_create thread:1 	PID:17978 in main().
+2021-03-02 15:17:15.972947883 	Started run thread:1 in threadFn()	TID:17984 Run is to wait for 8 seconds.
+2021-03-02 15:17:15.975850205 	CREATE: pthread_create thread:2 	PID:17978 in main().
+2021-03-02 15:17:15.975973035 	Started run thread:2 in threadFn()	TID:17985 Run is to wait for 3 seconds.
+2021-03-02 15:17:15.978876142 	CREATE: pthread_create thread:3 	PID:17978 in main().
+2021-03-02 15:17:15.982627105 	Started run thread:3 in threadFn()	TID:17986 Run is to wait for 23 seconds.
+2021-03-02 15:17:15.982762964 	CREATE: pthread_create thread:4 	PID:17978 in main().
+2021-03-02 15:17:15.983105056 	Started run thread:4 in threadFn()	TID:17987 Run is to wait for 2 seconds.
+2021-03-02 15:17:15.988672287 	CREATE: pthread_create thread:5 	PID:17978 in main().
+2021-03-02 15:17:15.988796658 	Started run thread:5 in threadFn()	TID:17988 Run is to wait for 10 seconds.
+2021-03-02 15:17:15.994532596 	CREATE: pthread_create thread:6 	PID:17978 in main().
+2021-03-02 15:17:15.995129257 	Started run thread:6 in threadFn()	TID:17989 Run is to wait for 21 seconds.
+2021-03-02 15:17:15.000509025 	CREATE: pthread_create thread:7 	PID:17978 in main().
+2021-03-02 15:17:15.000636021 	Started run thread:7 in threadFn()	TID:17990 Run is to wait for 11 seconds.
+2021-03-02 15:17:17.983330222 	Finished run thread:4 in threadFn()	TID:17987 Run duration = 2.001527999 seconds. 
+2021-03-02 15:17:18.976158420 	Finished run thread:2 in threadFn()	TID:17985 Run duration = 3.000270605 seconds. 
+2021-03-02 15:17:23.973152417 	Finished run thread:1 in threadFn()	TID:17984 Run duration = 8.000168076 seconds. 
+2021-03-02 15:17:25.989030908 	Finished run thread:5 in threadFn()	TID:17988 Run duration = 10.000286442 seconds. 
+2021-03-02 15:17:26.966827329 	Finished run thread:0 in threadFn()	TID:17983 Run duration = 11.000233136 seconds. 
+2021-03-02 15:17:26.000810297 	Finished run thread:7 in threadFn()	TID:17990 Run duration = 11.000272697 seconds. 
+2021-03-02 15:17:36.995331705 	Finished run thread:6 in threadFn()	TID:17989 Run duration = 21.000811684 seconds. 
+2021-03-02 15:17:38.982877864 	Finished run thread:3 in threadFn()	TID:17986 Run duration = 23.003899076 seconds. 
+2021-03-02 15:17:38.982974506 	Main() is waiting at barrier 		PID:17978 in main().
+2021-03-02 15:17:38.983059021 	Thread:5 waiting at barrier 		TID:17988 waiting in threadFn(). 
+2021-03-02 15:17:38.983092521 	Thread:4 waiting at barrier 		TID:17987 waiting in threadFn(). 
+2021-03-02 15:17:38.983138016 	Thread:2 waiting at barrier 		TID:17985 waiting in threadFn(). 
+2021-03-02 15:17:38.983205294 	2021-03-02 15:17:38Thread:1 waiting at barrier 		TID:17984 waiting in threadFn(). 
+.983209143 	Thread:7 waiting at barrier 		TID:17990 waiting in threadFn(). 
+2021-03-02 15:17:38.983315267 	Thread:6 waiting at barrier 		TID:17989 waiting in threadFn(). 
+2021-03-02 15:17:38.983386809 	Thread:0 waiting at barrier 		TID:17983 waiting in threadFn(). 
+2021-03-02 15:17:38.983509855 	Thread:3 waiting at barrier 		TID:17986 waiting in threadFn(). 
+2021-03-02 15:17:38.983537884 	JOIN: pthread_join thread:0 		PID:17978 in main().
+2021-03-02 15:17:38.983577315 	JOIN: pthread_join thread:1 		PID:17978 in main().
+2021-03-02 15:17:38.983603267 	JOIN: pthread_join thread:2 		PID:17978 in main().
+2021-03-02 15:17:38.983628849 	JOIN: pthread_join thread:3 		PID:17978 in main().
+2021-03-02 15:17:38.987101266 	JOIN: pthread_join thread:4 		PID:17978 in main().
+2021-03-02 15:17:38.990484985 	JOIN: pthread_join thread:5 		PID:17978 in main().
+2021-03-02 15:17:38.992579695 	JOIN: pthread_join thread:6 		PID:17978 in main().
+2021-03-02 15:17:38.994004222 	JOIN: pthread_join thread:7 		PID:17978 in main().
+2021-03-02 15:17:38.994014081 	DESTROY: pthread_barrier_destroy 	PID:17978 Barrier for 9 threads destroyed in main(). 
+2021-03-02 15:17:38.994020604 	Timer 5 stop. Duration (timer start-to-stop) = 23.035484846 seconds. 
+
+
+Alhamdulillah 3 times WRY. Eclipse Kepler 32 bit.
+
+2021-03-02 15:17:38.994035169 	Total program run duration   = 25.805569190 seconds. 
+
+2021-03-02 15:17:38.994041482 	Program ended. 
+2021-03-02 15:17:38.994048503 	Ending in main(), Alhamdulillah 3 times WRY. 
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github-mit/pthread-barrier-dynamic-queues/Debug$ 
+
+===========================================================
+
+
